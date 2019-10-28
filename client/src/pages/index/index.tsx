@@ -35,6 +35,8 @@ export default class Index extends Component<IProps, IState> {
   };
 
   page = 1;
+  pageSize = 20;
+  total = 1;
 
   onPullDownRefresh() {
     this.page = 1;
@@ -51,17 +53,17 @@ export default class Index extends Component<IProps, IState> {
 
   async fetch() {
     this.showLoading();
-    const data = await getGalleryList(this.page);
+    const data = await getGalleryList(this.page, this.pageSize);
     this.hideLoading();
     if (data.code !== 0) {
       this.setState({status: EStatus.loadError});
       return;
     }
 
-    // if (noMore) {
-    //   this.setState({status: EStatus.noMore});
-    //   return;
-    // }
+    if (this.page * this.pageSize >= data.data.total) {
+      this.setState({status: EStatus.noMore});
+      // return;
+    }
     let galleries: IGallery[] = [...this.state.galleries];
     if (this.page === 1) {
       galleries = [];

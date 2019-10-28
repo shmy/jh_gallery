@@ -2,5 +2,6 @@
 * total === 0 : noData --ok
 * event bus --ok
 * 图片变形 --ok
-* 首页分页
+* git --ok
+* 首页分页 --ok
 * rpx 2 px

@@ -9,17 +9,18 @@ exports.main = async (meta = {page: 1, pageSize: 20}) => {
   const {OPENID} = cloud.getWXContext();
   const skip = (meta.page - 1) * meta.pageSize;
   try {
-    const result = await gallery
+    const query = gallery
       .where({open_id: OPENID})
       .orderBy('created_at', 'desc')
-      .orderBy('updated_at', 'desc')
-      .skip(skip)
+      .orderBy('updated_at', 'desc');
+    const result = await query.skip(skip)
       .limit(meta.pageSize)
       .get();
+    const count = await query.count();
     return {
       code: 0,
       data: {
-        total: 200,
+        total: count.total,
         data: result.data,
         meta,
       },
