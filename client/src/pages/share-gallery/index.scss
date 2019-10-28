@@ -1,0 +1,14 @@
+.qrcode-wrapper {
+  position: relative;
+  height: 400rpx;
+  width: 400rpx;
+  background-color: #ddd;
+  margin: 20rpx auto 0 auto;
+  .qrcode-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+}

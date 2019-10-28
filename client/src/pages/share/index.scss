@@ -1,0 +1,50 @@
+$spacing: 7rpx;
+.gallery-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  .gallery-scroll-view{
+    flex: 1;
+    height: 0;
+    overflow: auto;
+  }
+  .gallery-scroll-view-inner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: $spacing;
+    overflow: auto;
+  }
+  .gallery-item {
+    flex: 0 0 50%;
+    padding-right: $spacing;
+    padding-bottom: $spacing;
+    box-sizing: border-box;
+    position: relative;
+    background-color: white;
+    &::before {
+      display: block;
+      content: " ";
+      padding-bottom: 100%;
+    }
+  }
+  .gallery-inner {
+    position: absolute;
+    top: $spacing;
+    left: $spacing;
+    right: $spacing;
+    bottom: $spacing;
+    background-color: grey;
+    overflow: hidden;
+  }
+  .gallery-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+}

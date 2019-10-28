@@ -1,0 +1,28 @@
+@import "~taro-ui/dist/style/components/button.scss";
+@import "~taro-ui/dist/style/components/grid.scss";
+@import "~taro-ui/dist/style/components/input.scss";
+@import "~taro-ui/dist/style/components/textarea.scss";
+@import "~taro-ui/dist/style/components/button.scss";
+@import "~taro-ui/dist/style/components/loading.scss";
+@import "~taro-ui/dist/style/components/form.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
+@import "~taro-ui/dist/style/components/activity-indicator.scss";
+@import '~taro-ui/dist/style/components/loading.scss';
+@import "~taro-ui/dist/style/components/list.scss";
+
+$fabSize: 86rpx;
+.fab-fixed {
+  height: $fabSize;
+  width: $fabSize;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #6190e8;
+  position: fixed;
+  right: 40rpx;
+  bottom: 60rpx;
+  z-index: 1010;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
