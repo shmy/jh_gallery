@@ -9,6 +9,7 @@
 @import "~taro-ui/dist/style/components/activity-indicator.scss";
 @import '~taro-ui/dist/style/components/loading.scss';
 @import "~taro-ui/dist/style/components/list.scss";
+@import "~taro-ui/dist/style/components/modal.scss";
 
 $fabSize: 86rpx;
 .fab-fixed {
@@ -18,11 +19,14 @@ $fabSize: 86rpx;
   border-radius: 50%;
   background-color: #6190e8;
   position: fixed;
-  right: 40rpx;
-  bottom: 60rpx;
+  right: 40px;
+  bottom: 40px;
   z-index: 1010;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
+}
+.at-modal {
+  z-index: 99999;
 }

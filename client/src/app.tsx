@@ -22,6 +22,7 @@ class App extends Component {
     cloud: true,
     pages: [
       'pages/index/index',
+      'pages/login/index',
       'pages/upload/index',
       'pages/add-gallery/index',
       'pages/share/index',
@@ -61,15 +62,15 @@ class App extends Component {
 
   componentDidMount () {
     if (process.env.TARO_ENV === 'weapp') {
-      Taro.cloud.init()
+      Taro.cloud.init();
     }
   }
 
-  componentDidShow () {}
-
-  componentDidHide () {}
-
-  componentDidCatchError () {}
+  // componentDidShow () {}
+  //
+  // componentDidHide () {}
+  //
+  // componentDidCatchError () {}
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数

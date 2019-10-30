@@ -75,30 +75,30 @@ class Gallery extends Component<IProps, IState> {
       urls: this.state.photos,               //所有要预览的图片的地址集合 数组形式
     });
   };
-  handleShowActionSheet = () => {
-    Taro.showActionSheet({
-      itemList: ['分享这个相册', '编辑相册信息', '上传新的图片']
-    }).then((result) => {
-      switch (result.tapIndex) {
-        case 0: {
-          this.handleShare();
-          break;
-        }
-        case 1: {
-          this.handleEdit();
-          break;
-        }
-        case 2: {
-          this.handleUpload();
-          break;
-        }
-        default:
-          break;
-      }
-    })
-      .catch(() => {
-      });
-  };
+  // handleShowActionSheet = () => {
+  //   Taro.showActionSheet({
+  //     itemList: ['分享这个相册', '编辑相册信息', '上传新的图片']
+  //   }).then((result) => {
+  //     switch (result.tapIndex) {
+  //       case 0: {
+  //         this.handleShare();
+  //         break;
+  //       }
+  //       case 1: {
+  //         this.handleEdit();
+  //         break;
+  //       }
+  //       case 2: {
+  //         this.handleUpload();
+  //         break;
+  //       }
+  //       default:
+  //         break;
+  //     }
+  //   })
+  //     .catch(() => {
+  //     });
+  // };
   handleShare = () => {
     Taro.navigateTo({
       url: `/pages/share-gallery/index?id=${this.$router.params.id}`
@@ -125,9 +125,20 @@ class Gallery extends Component<IProps, IState> {
         {this.state.noData ? <View style='text-align: center'>
           暂无数据
         </View> : null}
-        <View onClick={this.handleShowActionSheet}
-              className='fab-fixed'>
-          <View className='at-icon at-icon-menu'/>
+        <View onClick={this.handleShare}
+              className='fab-fixed'
+              style='bottom: 160px;background-color: red;'>
+          <View className='at-icon at-icon-share'/>
+        </View>
+        <View onClick={this.handleEdit}
+              className='fab-fixed'
+              style='bottom: 100px; background-color: green;'>
+          <View className='at-icon at-icon-edit'/>
+        </View>
+        <View onClick={this.handleUpload}
+              className='fab-fixed'
+              style='bottom: 40px'>
+          <View className='at-icon at-icon-upload'/>
         </View>
         {/*<ScrollView style='display: 1'>*/}
         <View className='gallery-scroll-view'>

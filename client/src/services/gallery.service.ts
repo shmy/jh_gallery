@@ -1,5 +1,7 @@
 import Taro from '@tarojs/taro'
+import {checkIsAuthenticated} from "../defs/tool";
 
+const noAuthenticationResponse = {code: 2, data: null};
 export interface IGallery {
   _id: string;
   cover_photo: string;
@@ -12,6 +14,9 @@ export interface IGallery {
 }
 
 export const getGalleryList = async (page = 1, pageSize = 20) => {
+  if (await checkIsAuthenticated() === false) {
+    return noAuthenticationResponse;
+  }
   const data = await Taro.cloud.callFunction({
     name: "gallery-index",
     data: {page, pageSize}
@@ -21,6 +26,9 @@ export const getGalleryList = async (page = 1, pageSize = 20) => {
 };
 
 export const getGalleryDetail = async (id: string) => {
+  if (await checkIsAuthenticated() === false) {
+    return noAuthenticationResponse;
+  }
   const data = await Taro.cloud.callFunction({
     name: "gallery-detail",
     data: {id}
@@ -30,6 +38,9 @@ export const getGalleryDetail = async (id: string) => {
 };
 
 export const addGallery = async (title: string, description: string) => {
+  if (await checkIsAuthenticated() === false) {
+    return noAuthenticationResponse;
+  }
   const data = await Taro.cloud.callFunction({
     name: "gallery-create",
     data: {title, description}
@@ -39,6 +50,9 @@ export const addGallery = async (title: string, description: string) => {
 };
 
 export const editGallery = async (id: string, title: string, description: string) => {
+  if (await checkIsAuthenticated() === false) {
+    return noAuthenticationResponse;
+  }
   const data = await Taro.cloud.callFunction({
     name: "gallery-update",
     data: {id, title, description}
@@ -48,6 +62,9 @@ export const editGallery = async (id: string, title: string, description: string
 };
 
 export const deleteGallery = async (id: number | string) => {
+  if (await checkIsAuthenticated() === false) {
+    return noAuthenticationResponse;
+  }
   const data = await Taro.cloud.callFunction({
     name: "gallery-delete",
     data: {id}
@@ -57,6 +74,9 @@ export const deleteGallery = async (id: number | string) => {
 };
 
 export const shareGallery = async (id: string) => {
+  if (await checkIsAuthenticated() === false) {
+    return noAuthenticationResponse;
+  }
   const data = await Taro.cloud.callFunction({
     name: "gallery-share",
     data: {id}
@@ -66,6 +86,9 @@ export const shareGallery = async (id: string) => {
 };
 
 export const addPhotoToGallery = async (id: string, photos: string[]) => {
+  if (await checkIsAuthenticated() === false) {
+    return noAuthenticationResponse;
+  }
   const data = await Taro.cloud.callFunction({
     name: "gallery-add-photo",
     data: {id, photos}
@@ -74,12 +97,3 @@ export const addPhotoToGallery = async (id: string, photos: string[]) => {
   return data.result;
 };
 
-
-// export const getGallerySharedQrCode = async (id: string) => {
-//   const data = await Taro.cloud.callFunction({
-//     name: "gallery-share",
-//     data: {id}
-//   });
-//   console.log('getGallerySharedQrCode', data.result);
-//   return data.result;
-// };

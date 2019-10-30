@@ -1,9 +1,10 @@
 import './index.scss'
 import Taro, {Component, Config} from '@tarojs/taro'
-import {View, Image} from '@tarojs/components'
+import {View, Image, Button} from '@tarojs/components'
 import {getGalleryList, IGallery} from "../../services/gallery.service";
 import JhActivityIndicator from "../../components/jh-activity-indicator";
 import {EStatus} from "../../defs";
+import {AtModal, AtModalHeader, AtModalContent, AtModalAction} from "taro-ui"
 import EventBus from "../../defs/event_bus";
 
 interface IProps {
@@ -60,7 +61,8 @@ export default class Index extends Component<IProps, IState> {
       return;
     }
 
-    if (this.page * this.pageSize >= data.data.total) {
+    // 没有更多
+    if (this.page * this.pageSize >= data.data.total && this.page !== 1) {
       this.setState({status: EStatus.noMore});
       // return;
     }
@@ -100,10 +102,10 @@ export default class Index extends Component<IProps, IState> {
     });
   }
 
-  handleAddClick = () => {
+  handleAddClick = async () => {
     Taro.navigateTo({
       url: '/pages/add-gallery/index'
-    })
+    });
   };
   handleItemClick = (gallery: IGallery) => {
     Taro.navigateTo({
